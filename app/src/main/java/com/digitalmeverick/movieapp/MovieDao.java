@@ -1,6 +1,8 @@
 package com.digitalmeverick.movieapp;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -11,13 +13,17 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface MovieDao {
 
-    @Query("SELECT * FROM MovieTable" )
-    List<MovieModel> getAllMovies();
+    @Query("SELECT * FROM MovieTable")
+    List<Movieofline> getAllMovies();
 
-    @Query("SELECT * FROM MovieTable ORDER BY date " )
-    List<MovieModel> getAllMoviesbyrating();
+    @Query("SELECT * FROM MovieTable ORDER BY date ")
+    List<Movieofline> getAllMoviesbyrating();
 
 
-    @Insert(onConflict = REPLACE)
+    @Insert()
     void insertMovie(Movieofline movieoflines);
+
+    @Delete
+    public void DeleteMovie(Movieofline movieoflines);
+
 }

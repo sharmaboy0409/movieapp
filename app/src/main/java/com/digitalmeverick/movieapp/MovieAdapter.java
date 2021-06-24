@@ -20,9 +20,9 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private Context context;
-    private List<MovieModel> movieList;
+    private List<Movieofline> movieList;
 
-    public MovieAdapter(Context context, List<MovieModel> movieList) {
+    public MovieAdapter(Context context, List<Movieofline> movieList) {
         this.context = context;
         this.movieList = movieList;
     }
@@ -37,13 +37,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
 
-        MovieModel movieModel=movieList.get(position);
+        Movieofline movieModel=movieList.get(position);
        holder.rating.setText( String.valueOf(movieModel.getVote_average()));
-        holder.title.setText(movieModel.getOriginal_title());
-        holder.date.setText(movieModel.getRelease_date());
-       // holder.desc.setText(movieModel.getOverview().toString());
+        holder.title.setText(movieModel.getTitleR());
+        holder.date.setText(movieModel.getDateR());
+//        holder.desc.setText(movieModel.getDescR());
 
-       // Glide.with(context).load("https://image.tmdb.org/t/p/w500"+movieModel.getPoster_path()).into(holder.imageView);
+        Glide.with(context).load("https://image.tmdb.org/t/p/w500"+movieModel.getPosterR()).into(holder.imageView);
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +52,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 Intent intent= new Intent(context,movieDetail.class);
 
                 Bundle bundle= new Bundle();
-                bundle.putString("title",movieModel.getOriginal_title());
-                bundle.putString("desc",movieModel.getOverview());
-                bundle.putString("date",movieModel.getRelease_date());
-                bundle.putString("poster","https://image.tmdb.org/t/p/w500"+movieModel.getPoster_path());
+                bundle.putString("title",movieModel.getTitleR());
+                bundle.putString("desc",movieModel.getDescR());
+                bundle.putString("date",movieModel.getDateR());
+                bundle.putString("poster","https://image.tmdb.org/t/p/w500"+movieModel.getPosterR());
                 bundle.putDouble("rating",movieModel.getVote_average());
 
                 intent.putExtras(bundle);

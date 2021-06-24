@@ -22,6 +22,8 @@ public class Movieofline implements Serializable {
     public String posterR;
     @ColumnInfo(name="movie_id")
     public int movie_id;
+    @ColumnInfo(name="new_column")
+    public int new_column;
 
     public int getId() {
         return id;
